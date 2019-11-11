@@ -60,11 +60,11 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function sumAndMultiply(a, b, c) { //eslint-disable-line
-var sums = sum(a,b)[0] + c;
-var multiples = multiply(a,b)[0] * c ;
-var smessages = a +" and "+ b + " and "+ c +" sum to " + sums+".";
-var mmessages = "The product of " + a + " and " + b + " and " + c + " is " + multiples + ".";
-var results = [sums,multiples,smessages,mmessages];
+var sums = sum(sum(a,b)[0],c);
+var multiples = multiply(multiply(a,b)[0] , c);
+var smessages = a +" and "+ b + " and "+ c +" sum to " + sums[0] + ".";
+var mmessages = "The product of " + a + " and " + b + " and " + c + " is " + multiples[0] + ".";
+var results = [sums[0],multiples[0],smessages,mmessages];
 return results;
 }
 // Here is the test for sumAndMultiply(); uncomment it to run it
@@ -120,7 +120,8 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function multiplyArray(multArr) { //eslint-disable-line
-    var multiples = multiply(testArray[0],testArray[1])[0] * testArray[2] ;
+    //var multiples = multiply(testArray[0],testArray[1])[0] * testArray[2] ;
+    var multiples = multiply(multiply(testArray[0],testArray[1])[0],testArray[2])[0];
     var mmessages = "The numbers " + testArray[0] + "," + testArray[1] + "," + testArray[2] + " have a product of " + multiples + ".";
     var result = [multiples,mmessages]
     return result;
@@ -152,16 +153,29 @@ var testDynamicArray = [1,2,3,4,5]; //eslint-disable-line
 
 function multiplyAnyArray(dynamicArray) { //eslint-disable-line
     var multi = 1;
-    var mmessages = [];
+    //var mmessages = [];
     var mmessages = "The numbers ";
+    // var count = 0;
+    // for (var i=0 ; i < dynamicArray.length  ; i++) {
+    //     //multi*=dynamicArray[i];
+    //     //console.log(dynamicArray[i]);
+    //     count++;
+    //     // console.log( "count is " + count);
+    //     if(count == dynamicArray.length){
+    //         break;
+    //     }else{
+    //         multi *= multiply(dynamicArray[i],dynamicArray[i+1])[0];
+    //     }
+    //     mmessages += dynamicArray[i] + ",";
+    // }
+
     for (var i=0 ; i < dynamicArray.length  ; i++) {
         multi*=dynamicArray[i];
         mmessages += dynamicArray[i] + ",";
-        
     }
     mmessages = mmessages.slice(0, -1); 
     mmessages += " have a product of " + multi + ".";
-    var result = [multi,mmessages]
+    var result = [multi,mmessages];
     return result;
 }
 
